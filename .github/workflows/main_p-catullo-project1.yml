@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
   
   env:
-  WORKING_DIRECTORY: Project-Files/StoreFile
+  WORKING_DIRECTORY: Project-Files/StoreFile 
 
 jobs:
   build:
