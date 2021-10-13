@@ -4,28 +4,30 @@ using System.Linq;
 using System.Threading.Tasks;
 using Models;
 // using System.Collections.IEnumerable;
-using Model = Models;
+
 
 namespace DL
 {
     public class TempRepo
     {
-        public Model.Customer AddCustomer(Model.Customer newCustomer)
+        public Customer AddCustomer(Customer newCustomer)
         {
             throw new NotImplementedException();
         }
 
-        public List<Model.Store> GetAllStores()
+
+
+        public List<Store> GetAllStores()
         {
-            return new List<Model.Store>()
+            return new List<Store>()
             {
 
             };
         }
 
-        public Model.Customer GetCustomer()
+        public Customer GetCustomer()
         {
-            return new Model.Customer()
+            return new Customer()
             {
                 
             };

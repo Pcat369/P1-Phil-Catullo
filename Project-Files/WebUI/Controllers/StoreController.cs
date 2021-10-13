@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebUI.Models;
 
 namespace WebUI.Controllers
 {
@@ -20,7 +21,7 @@ namespace WebUI.Controllers
         // GET: StoreController
         public ActionResult Index()
         {
-            List<Store> allStore = _bl.GetAllStores();
+            List<StoreVM> allStore = _bl.GetAllStores().Select(s => new StoreVM(s)).ToList();
             return View(allStore);
         }
 
@@ -39,19 +40,19 @@ namespace WebUI.Controllers
         // POST: StoreController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Store store)
+        public ActionResult Create(StoreVM store)
         {
             try
             {
                 //Data in this form is valid
                 if(ModelState.IsValid)
                 {
-                    _bl.AddStore(store);
+                    _bl.AddStore(store.ToModel());
                     return RedirectToAction(nameof(Index));
                 }
                 return View();
             }
-            catch
+            catch (Exception)
             {
                 return View();
             }
@@ -60,44 +61,59 @@ namespace WebUI.Controllers
         // GET: StoreController/Edit/5
         public ActionResult Edit(int id)
         {
-            _bl.GetOneStore(id);
-            return View();
+            return View(new StoreVM(_bl.GetOneStore(id)));
         }
 
         // POST: StoreController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(StoreVM store)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    _bl.UpdateStore(store.ToModel());
+                    return RedirectToAction(nameof(Index));
+                }
+                return RedirectToAction(nameof(Edit));
             }
             catch
             {
-                return View();
+                return RedirectToAction(nameof(Edit));
             }
         }
 
         // GET: StoreController/Delete/5
+        [HttpGet]
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(new StoreVM(_bl.GetOneStore(id)));
         }
 
         // POST: StoreController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete([FromRoute(Name = "id")]int myIdName,bool delete)
         {
-            try
+            if(delete == true)
+            {
+                try
+                {
+                    _bl.DeleteStore(myIdName);
+                    return RedirectToAction(nameof(Index));
+                }
+                catch
+                {
+                    return View();
+                }
+            }
+            else
             {
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+
+           
         }
     }
 }

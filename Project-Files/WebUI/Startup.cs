@@ -30,18 +30,20 @@ namespace WebUI
         //Singleton: Shares an instance across the request. Could lead to other requests waiting for container that is needed.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddDbContext<StoreDBContext>(options => options.UseNpgsql(Configuration.GetConnectionString("StoreDB")));
             //We need to configure DB here and add DBContext as a dependency.
             //Finally, add all other dependencies such as BL, and Repo. 
             //This means that we specify what concrete classes impliment interfaces.
-            
+
 
             /*
              * When adding scope it needs to go from deepest to shallowest. So the DB is deepest and must be set first. 
              */
+            services.AddSession(options => { options.IdleTimeout = TimeSpan.FromMinutes(10); });
             services.AddScoped<IRepo, DBRepo>();
             services.AddScoped<IBL, BL>();
+            //services.AddHttpContextAccessor();
             //^Dependency Injection. Registering the depencendies the conrollers need. 
         }
 
@@ -60,7 +62,7 @@ namespace WebUI
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();

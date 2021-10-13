@@ -1,0 +1,11 @@
+﻿@model Models.Inventory
+
+<h1>Update Quantity</h1>
+<p>
+    Please enter the amount you would like to update.
+</p>
+<form asp-action="Edit">
+    <input asp-for="Quantity" />
+    @Html.HiddenFor(m => m.InventoryId)
+    <button>Update</button>
+</form>

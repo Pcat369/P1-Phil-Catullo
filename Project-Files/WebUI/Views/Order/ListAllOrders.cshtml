@@ -1,0 +1,41 @@
+﻿@model List<Models.Order>
+
+
+
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    @foreach (var item in Model)
+    {
+
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => item.State)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => item.State)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => item.Store)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => item.Store.StoreID)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => item.Customer)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => item.Customer.CustomerID)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => item.TotalPrice)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => item.TotalPrice)
+        </dd>
+    </dl>
+    }
+</div>
+<div>
+</div>

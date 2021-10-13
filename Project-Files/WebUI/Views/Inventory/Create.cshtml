@@ -1,0 +1,48 @@
+﻿@model Models.Inventory
+@inject IBL _bl
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Inventory</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StoreId" class="control-label"></label>
+                <input asp-for="StoreId" class="form-control" />
+                <span asp-validation-for="StoreId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <select asp-for="ProductId" class="control-label">
+                    @foreach (var product in _bl.GetProducts())
+                    {
+                        <option value="@product.ProductID">@product.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="ProductId" class="text-danger"></span>
+            </div>
+            <a asp-action="Create" asp-controller="Product" asp-route-returnUrl="/inventory/Create?storeID=@Model.StoreId">Missing something? Create a new product</a>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-route-id="@Model.StoreId">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

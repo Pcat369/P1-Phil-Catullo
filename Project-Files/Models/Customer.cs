@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Models
 {
@@ -33,12 +34,16 @@ namespace Models
 
         //We can interact with properties like fields.
         //They have getters and setters built in.
+        [RegularExpression("^[a-zA-Z']+$", ErrorMessage = "Names can only contain alphabetical characters.")]
         public string Name{get; set;}
 
+        [RegularExpression("^[0-9]+$", ErrorMessage = "Your Age can only contain numeric characters.")]
         public int Age{get; set;}
 
+        [RegularExpression("^[a-zA-Z']+$", ErrorMessage = "City names can only contain alphanumeric characters.")]
         public string City{get; set;}
 
+        [RegularExpression("^[a-zA-Z0-9 !?']+$", ErrorMessage = "Addresses can only contain alphanumeric characters, as well as !, ?, and '.")]
         public string Address { get; set; }
 
         public int CustomerID{get; set;}

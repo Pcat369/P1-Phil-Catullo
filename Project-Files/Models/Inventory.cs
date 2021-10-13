@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Models
 {
@@ -9,6 +10,7 @@ public class Inventory
 
     public Inventory(){}
 
+   
     public Inventory(int quantity): this()
     {
         this.Quantity = quantity;
@@ -35,14 +37,16 @@ public class Inventory
 
 
     public int InventoryId { get; set; }
-
+    
+    [Required]
     public int Quantity { get; set; }
 
     public int StoreId { get; set; }
 
     public int ProductId { get; set; }
-
-    public List<Product> Products { get; set; }
+    
+    //[Required]
+    public Product Product { get; set; }
 
     public override string ToString()
 {

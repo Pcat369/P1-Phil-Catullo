@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Models
 {
@@ -12,7 +11,7 @@ namespace Models
             this.Inventories = new List<Inventory>();
         }
 
-        
+
 
         public Store(string storename)
         {
@@ -29,14 +28,10 @@ namespace Models
             this.StoreID = storeID;
         }
 
-        [Required]
-        [RegularExpression("^[a-zA-Z0-9 !?']+$", ErrorMessage = "Store names can only contain alphanumeric characters, as well as !, ?, and '.")]
         public string StoreName{get; set;}
 
-        [RegularExpression("^[a-zA-Z0-9 !?']+$", ErrorMessage = "Street ames can only contain alphanumeric characters, as well as !, ?, and '.")]
         public string Address{get; set;}
 
-        [RegularExpression("^[a-zA-Z0-9 !?']+$", ErrorMessage = "City names can only contain alphanumeric characters, as well as !, ?, and '.")]
         public string City { get; set; }
 
         public int StoreID { get; set; }
@@ -46,6 +41,11 @@ namespace Models
         public override string ToString()
         {
             return $"Store Name: {this.StoreName}. \nAddress: {this.Address}. \nCity: {this.City}. \nID: {this.StoreID}.";
+        }
+
+        public bool Equals(Store store)
+        {
+            return this.StoreID == store.StoreID && this.StoreName == store.StoreName && this.Address == store.Address && this.City == store.City;
         }
     }
 }

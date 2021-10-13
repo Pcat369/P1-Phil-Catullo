@@ -1,10 +1,10 @@
-﻿@model IEnumerable<Models.Store>
+﻿@model IEnumerable<WebUI.Models.StoreVM>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Stores</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -40,12 +40,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.City)
             </td>
-            <td>
+            <th>
                 @Html.DisplayFor(modelItem => item.StoreID)
-            </td>
+            </th>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {  id=item.StoreID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.StoreID })
+                @Html.ActionLink("Inventory", "Index", "Inventory", new {id = item.StoreID}) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.StoreID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.StoreID })
             </td>
         </tr>
 }
