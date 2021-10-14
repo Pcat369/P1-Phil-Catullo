@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy ASP.Net Core app to Azure Web App - P-Catullo-Project1
+name: Build and deploy ASP.Net Core app to Azure Web App - P1-Philip-Catullo
 
 on:
   push:
@@ -10,7 +10,8 @@ on:
   workflow_dispatch:
   
   env:
-  WORKING_DIRECTORY: Project-Files/StoreFile
+    WORKING_DIRECTORY: Project-Files/StoreFile
+    
 
 jobs:
   build:
@@ -26,16 +27,16 @@ jobs:
           include-prerelease: true
 
       - name: Build with dotnet
-        run: dotnet build ${{env.WORKING_DIRECTORY}} --configuration Release
+        run: dotnet build ${{env.WORKING_DIRECTORY }} --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish ${{env.WORKING_DIRECTORY}} -c Release -o ${{env.WORKING_DIRECTORY}}/myapp
+        run: dotnet publish ${{env.WORKING_DIRECTORY }} -c Release -o ${{env.WORKING_DIRECTORY }}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: .net-app
-          path: ${{env.WORKING_DIRECTORY}}/myapp
+          path: ${{env.WORKING_DIRECTORY }}/myapp
 
   deploy:
     runs-on: windows-latest
@@ -54,7 +55,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'P-Catullo-Project1'
+          app-name: 'P1-Philip-Catullo'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4D4ED02ABC6745A091648B3AF9ABEAAE }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_249A977C1B5347EE8C9C41541DFE2F5A }}
           package: .
