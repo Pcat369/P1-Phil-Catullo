@@ -1,10 +1,10 @@
 ﻿THe Mage's Tower
-Project Description
+Project Description:
 When you're an adventurer looking for magic supplies, it can always be hard to find the kind of quality that will help you out in the wilderness.
 The Mage's Tower can meet all your adventuring needs. With supplies from the sunny Summerset Isles, and locations as far north as snowy Skyrim, you can always find what you need. 
 Our stores allow anyone from Skyrim to Cyrodiil and beyond to purchase the supplies any aspiring adventurer needs to face challenges all across Tamriel.
 
-Technologies Used
+Technologies Used:
 C#
 EF Core
 ASP.NET MVC
@@ -13,19 +13,31 @@ Github Actions
 Azure
 Serilog
 
-Features
-Creating customer accounts on the site. 
-Letting customers log into and out of the site.
-Allowing customers to view stores. 
-Customers can view inventories depending on which store they look at. 
-Item descriptions and prices are listed within the inventories. 
-Customers are able to select items and quantities from the store.
-Customers can view thier cart before ordering.
-Customers can check out everything in their cart and view order details. 
-Customers can look at their information including past orders. 
-New items can be created and added to stores. 
-Inventories can be replenished. 
-Items that are created can later be accessed by any other store and then added to their inventory.
+Features:
+Customer Login.
+Add a new customer
+See customer information
+Display order details
+View past orders. 
+View stores.
+Create new stores.
+View inventory by store.
+Stock items in the inventory.
+Create new items in the inventory.
+Replenish inventory.
+Add items to an order card.
+Place orders for multiple products.
+
+User Stories:
+As a customer I can use my customer ID to log in.
+As a customer I can check my account.
+As a customer I can update and change my information.
+As a customer I can view stores. 
+As a customer I can view inventory by store. 
+As a customer I can place multiple items on an order card.
+As a customer I ca view my order card. 
+As a customer I can place orders for multiple items.
+
 
 To-do list:
 Restrict managing stores and inventories to a manager functionality.
